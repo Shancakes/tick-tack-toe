@@ -2,6 +2,11 @@
 <html>
 
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vibur&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Tilt+Neon&display=swap" rel="stylesheet">
     <title>Tic Tac Toe</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
@@ -9,20 +14,38 @@
 <body>
     <div class="wrapper">
         <div class="header">
-            <img src="/images/tttLogo.png" alt="Tic Tac Toe Logo">
+            <h1>Tic Tac Toe</h1>
         </div>
 
         <div id="board">
-            <div class="cell" onclick="makeMove(0)"><img src="" alt="" width="50px"></div>
-            <div class="cell" onclick="makeMove(1)"><img src="" alt="" width="50px"></div>
-            <div class="cell" onclick="makeMove(2)"><img src="" alt="" width="50px"></div>
-            <div class="cell" onclick="makeMove(3)"><img src="" alt="" width="50px"></div>
-            <div class="cell" onclick="makeMove(4)"><img src="" alt="" width="50px"></div>
-            <div class="cell" onclick="makeMove(5)"><img src="" alt="" width="50px"></div>
-            <div class="cell" onclick="makeMove(6)"><img src="" alt="" width="50px"></div>
-            <div class="cell" onclick="makeMove(7)"><img src="" alt="" width="50px"></div>
-            <div class="cell" onclick="makeMove(8)"><img src="" alt="" width="50px"></div>
+            <div class="cell" onclick="makeMove(0)"></div>
+            <div class="cell" onclick="makeMove(1)"></div>
+            <div class="cell" onclick="makeMove(2)"></div>
+            <div class="cell" onclick="makeMove(3)"></div>
+            <div class="cell" onclick="makeMove(4)"></div>
+            <div class="cell" onclick="makeMove(5)"></div>
+            <div class="cell" onclick="makeMove(6)"></div>
+            <div class="cell" onclick="makeMove(7)"></div>
+            <div class="cell" onclick="makeMove(8)"></div>
         </div>
+
+        <div class="scoreboard">
+            <table>
+                <tr>
+                    <th>Player X Score</th>
+                    <th>Player O Score</th>
+                </tr>
+                <tr>
+                    <td><span id="playerXScore">0</span></td>
+                    <td><span id="playerOScore">0</span></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="reset-button">
+            <button onclick="resetScores()" class="button">Reset Scores</button>
+        </div>
+
 
         <div id="modal" class="modal">
             <div class="modal-content">

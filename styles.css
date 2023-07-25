@@ -1,57 +1,221 @@
 #board {
     display: flex;
     flex-wrap: wrap;
-    width: 300px;
-    height: 300px;
+    width: 450px;
+    height: 450px;
     margin: auto;
-    border: 1px solid #30D5C8;
+    border: 1px solid #fff;
+    box-shadow: 0 0 20px #f09;
 }
 
 .header {
-    margin: 50px;
-    padding-top: 100px;
-    ;
+    margin: auto;
     display: flex;
-    /* align-content: center; */
     justify-content: center;
-    /* margin: auto; */
+    color: #fff;
+    text-shadow:
+        0 0 7px #fff,
+        0 0 10px #fff,
+        0 0 21px #fff,
+        0 0 42px #f09,
+        0 0 82px #f09,
+        0 0 92px #f09,
+        0 0 102px #f09,
+        0 0 151px #f09;
+}
+
+body {
+    font-size: 18px;
+    @import url('https://fonts.googleapis.com/css2?family=Vibur&display=swap');
+
+    margin: 0;
+    background-image: url("images/background.jpg");
+    background-size: 110%;
+}
+
+h1 {
+    font-size: 6.2rem;
+    font-family: 'Vibur', cursive;
+    animation: pulsate 0.11s ease-in-out infinite alternate;
+}
+
+@keyframes pulsate {
+
+    100% {
+
+        text-shadow:
+            0 0 4px #fff,
+            0 0 11px #fff,
+            0 0 19px #fff,
+            0 0 40px #f09,
+            0 0 80px #f09,
+            0 0 90px #f09,
+            0 0 100px #f09,
+            0 0 150px #f09;
+
+    }
+
+    0% {
+
+        text-shadow:
+            0 0 4px #fff,
+            0 0 10px #fff,
+            0 0 18px #fff,
+            0 0 38px #f09,
+            0 0 73px #f09,
+            0 0 80px #f09,
+            0 0 94px #f09,
+            0 0 140px #f09;
+
+    }
 }
 
 .cell {
-    width: 100px;
-    height: 100px;
-    border: 1px solid #30D5C8;
+    width: 150px;
+    height: 150px;
+    border: 2px solid #fff;
+    box-shadow: 0 0 10px #f09;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 36px;
     cursor: pointer;
+    text-transform: capitalize;
+    color: #fff;
+    font-family: 'Tilt Neon', cursive;
+    font-size: 36px;
+    cursor: pointer;
     box-sizing: border-box;
+    box-shadow: 0 0 20px #f0f;
+    text-shadow: 0 0 10px #f0f, 0 0 20px #f0f, 0 0 30px #f0f, 0 0 40px #f0f, 0 0 50px #f0f, 0 0 60px #f0f, 0 0 70px #f0f, 0 0 80px #f0f, 0 0 90px #f0f;
 }
 
+@keyframes neonGlow {
 
-body {
-    margin: 0;
-}
-
-.wrapper {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    background: linear-gradient(45deg, #001eff, #bd00ff, #27DBB1);
-    background-size: 600% 100%;
-    animation: gradient 16s linear infinite;
-    animation-direction: alternate;
-}
-
-@keyframes gradient {
-    0% {
-        background-position: 0%
-    }
-
+    0%,
     100% {
-        background-position: 100%
+        text-shadow: 0 0 10px #f0f, 0 0 20px #f0f, 0 0 30px #f0f, 0 0 40px #f0f, 0 0 50px #f0f, 0 0 60px #f0f, 0 0 70px #f0f, 0 0 80px #f0f, 0 0 90px #f0f;
     }
+
+    50% {
+        text-shadow: 0 0 5px #f0f, 0 0 10px #f0f, 0 0 15px #f0f, 0 0 20px #f0f, 0 0 25px #f0f, 0 0 30px #f0f, 0 0 35px #f0f, 0 0 40px #f0f, 0 0 45px #f0f;
+    }
+}
+
+.cell.X {
+    color: #f0f;
+    animation: neonGlow 1s linear infinite;
+}
+
+.cell.O {
+    color: #f0f;
+    animation: neonGlow 1s linear infinite reverse;
+}
+
+
+.scoreboard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #fff;
+    font-family: 'Tilt Neon', cursive;
+    font-size: 24px;
+    margin-top: 30px;
+    border-radius: 10%;
+    text-align: center;
+}
+
+.scoreboard table {
+    width: 250px;
+    margin: 0 auto;
+    border-collapse: collapse;
+
+}
+
+.scoreboard th {
+    background-color: rgb(90, 90, 90, 0.5);
+    color: #fff;
+    padding: 10px;
+}
+
+.scoreboard td {
+    background-color: rgb(210, 210, 210, 0.3);
+    color: #fff;
+    font-size: larger;
+    padding: 10px;
+}
+
+.reset-button {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    font-family: 'Lato', sans-serif;
+    background: none;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    background: none;
+    padding: 20px;
+    font-size: 30px;
+}
+
+
+.button {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+
+
+}
+
+.button {
+    position: relative;
+    color: #f09;
+    border: none;
+    z-index: 2;
+    box-shadow: 0 0 6px #f09, 0 0 5px #f09 inset;
+}
+
+.button:before,
+.button:after {
+    position: absolute;
+    content: "";
+    width: 20%;
+    height: 20%;
+    border: 1px solid;
+    z-index: -1;
+    transition: all 0.3s ease;
+
+}
+
+.button:before {
+    top: 0;
+    left: 0;
+    border-bottom-color: transparent;
+    border-right-color: transparent;
+    border-top-color: #f09;
+    border-left-color: #f09;
+}
+
+.button:after {
+    bottom: 0;
+    right: 0;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    border-bottom-color: #f09;
+    border-right-color: #f09;
+}
+
+.button:hover:before,
+.button:hover:after {
+    border-color: #f09;
+    height: 100%;
+    width: 100%;
+    box-shadow: 0 0 5px #f09, 0 0 5px #f09 inset;
 }
 
 .modal {
@@ -92,13 +256,18 @@ body {
 .modal-content img {
     width: 100%;
     max-width: 250px;
-    /* Optionally set a maximum width */
     height: auto;
-    /* Maintain aspect ratio */
     margin: 30px;
+    animation: wiggle 2.5s ease;
+
 }
 
-.modal-text {
-    display: none;
-    /* Hide the text content */
+@keyframes wiggle {
+    0% {
+        transform: scale(0);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }

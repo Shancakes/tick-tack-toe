@@ -1,9 +1,9 @@
 const board = ['', '', '', '', '', '', '', '', ''];
 let currentPlayer = 'X';
 const cells = document.getElementsByClassName('cell');
-const imageX = '/images/imageX.png';
-const imageO = '/images/imageO.png';
 let gameOver = false;
+let playerXScore = 0;
+let playerOScore = 0;
 
 const winningCombos = [
     [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
@@ -14,18 +14,28 @@ const winningCombos = [
 function makeMove(cellIndex) {
     if (!gameOver && board[cellIndex] === '') {
         board[cellIndex] = currentPlayer;
-        const imgElement = cells[cellIndex].querySelector('img');
-        imgElement.src = currentPlayer === 'X' ? imageX : imageO;
+        const cell = cells[cellIndex];
+        cell.innerText = currentPlayer;
         checkWinner();
         currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
 
         if (currentPlayer === 'O' && !gameOver) {
-            // AI makes a move after a small delay 
+
             setTimeout(makeAIMove, 500);
         }
     }
 }
 
+function resetScores() {
+    playerXScore = 0;
+    playerOScore = 0;
+    updateScoreDisplay();
+}
+
+function updateScoreDisplay() {
+    document.getElementById('playerXScore').textContent = playerXScore;
+    document.getElementById('playerOScore').textContent = playerOScore;
+}
 
 function checkWinner() {
     for (const combo of winningCombos) {
@@ -38,10 +48,13 @@ function checkWinner() {
 
             if (winner === 'X') {
                 modalImage.src = '/images/xWins.png';
+                playerXScore++;
             } else if (winner === 'O') {
                 modalImage.src = '/images/oWins.png';
+                playerOScore++;
             }
 
+            updateScoreDisplay();
             modal.style.display = 'block';
             return;
         }
@@ -60,7 +73,16 @@ function checkWinner() {
 function closeModal() {
     const modal = document.getElementById('modal');
     modal.style.display = 'none';
-    window.location.reload(); // Refresh the page after the modal is closed
+    resetBoard();
+}
+
+function resetBoard() {
+    board.fill('');
+    currentPlayer = 'X';
+    gameOver = false;
+    const cellsArray = Array.from(cells);
+    cellsArray.forEach(cell => cell.innerText = '');
+    printBoard();
 }
 
 function getRandomAvailableCell() {
@@ -98,4 +120,6 @@ document.getElementById('board').addEventListener('click', function (event) {
     makeMove(cellIndex);
 });
 
+
+updateScoreDisplay();
 printBoard();
