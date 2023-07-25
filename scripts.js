@@ -1,6 +1,8 @@
 const board = ['', '', '', '', '', '', '', '', ''];
 let currentPlayer = 'X';
 const cells = document.getElementsByClassName('cell');
+const imageX = '/images/imageX.png';
+const imageO = '/images/imageO.png';
 let gameOver = false;
 
 const winningCombos = [
@@ -12,37 +14,53 @@ const winningCombos = [
 function makeMove(cellIndex) {
     if (!gameOver && board[cellIndex] === '') {
         board[cellIndex] = currentPlayer;
-        cells[cellIndex].innerText = currentPlayer;
+        const imgElement = cells[cellIndex].querySelector('img');
+        imgElement.src = currentPlayer === 'X' ? imageX : imageO;
         checkWinner();
         currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
 
         if (currentPlayer === 'O' && !gameOver) {
-            // AI makes a move after a small delay to simulate "thinking"
+            // AI makes a move after a small delay 
             setTimeout(makeAIMove, 500);
         }
     }
 }
+
 
 function checkWinner() {
     for (const combo of winningCombos) {
         const [a, b, c] = combo;
         if (board[a] && board[a] === board[b] && board[a] === board[c]) {
             gameOver = true;
-            setTimeout(() => {
-                alert(`${board[a]} wins!`);
-                window.location.reload(); // Refresh the page after the pop-up is closed
-            }, 100); // Delay the pop-up to ensure the board is updated first
+            const winner = board[a];
+            const modal = document.getElementById('modal');
+            const modalImage = document.getElementById('modal-image');
+
+            if (winner === 'X') {
+                modalImage.src = '/images/xWins.png';
+            } else if (winner === 'O') {
+                modalImage.src = '/images/oWins.png';
+            }
+
+            modal.style.display = 'block';
             return;
         }
     }
 
     if (!board.includes('')) {
         gameOver = true;
-        setTimeout(() => {
-            alert("It's a draw!");
-            window.location.reload(); // Refresh the page after the pop-up is closed
-        }, 100); // Delay the pop-up to ensure the board is updated first
+        const modal = document.getElementById('modal');
+        const modalImage = document.getElementById('modal-image');
+
+        modalImage.src = '/images/tie.png';
+        modal.style.display = 'block';
     }
+}
+
+function closeModal() {
+    const modal = document.getElementById('modal');
+    modal.style.display = 'none';
+    window.location.reload(); // Refresh the page after the modal is closed
 }
 
 function getRandomAvailableCell() {
@@ -69,9 +87,9 @@ function makeAIMove() {
 function printBoard() {
     console.clear();
     console.log(` ${board[0]} | ${board[1]} | ${board[2]} `);
-    console.log('--------');
+    console.log('-----------');
     console.log(` ${board[3]} | ${board[4]} | ${board[5]} `);
-    console.log('--------');
+    console.log('-----------');
     console.log(` ${board[6]} | ${board[7]} | ${board[8]} `);
 }
 
@@ -81,4 +99,3 @@ document.getElementById('board').addEventListener('click', function (event) {
 });
 
 printBoard();
-
