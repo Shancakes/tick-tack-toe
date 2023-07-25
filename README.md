@@ -14,6 +14,8 @@ A simple tick tack toe game made in Javascript, HTML, and CSS.The game allows a 
 
 -After each game, you can reset the board with the reset button, and play again to determine a new score.
 
+![demo-img](images/ttt1.png)
+
 ## Technologies Used
 -HTML
 
